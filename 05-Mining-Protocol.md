@@ -99,24 +99,28 @@ Figure 4.3.b Mining Protocol Messages: Mining on Standard Channel
 
 Flags usable in `SetupConnection.flags` and `SetupConnection.Error::flags`, where bit 0 is the least significant bit of the u32 type:
 
+|--------------------------|-----|-------------------------------------------------------------------------------------|
 | Field Name               | Bit | Description                                                                         |
 | ------------------------ | --- | ----------------------------------------------------------------------------------- |
 | REQUIRES_STANDARD_JOBS   | 0   | The downstream node requires standard jobs. It does not understand group channels - |
 |                          |     | it is unable to process extended jobs sent to standard channels through a group     |
 |                          |     | channel.                                                                            |
+|--------------------------|-----|-------------------------------------------------------------------------------------|
 | REQUIRES_WORK_SELECTION  | 1   | If set to 1, the client notifies the server that it will send SetCustomMiningJob on |
 |                          |     | this connection                                                                     |
+|--------------------------|-----|-------------------------------------------------------------------------------------|
 | REQUIRES_VERSION_ROLLING | 2   | The client requires version rolling for efficiency or correct operation and the     |
 |                          |     | server MUST NOT send jobs which do not allow version rolling                        |
+|--------------------------|-----|-------------------------------------------------------------------------------------|
 
 Flags usable in `SetupConnection.Success.flags`:
-| Field Name | Bit | Description |
-|----------------------------|-----|-----------------------------------------------------------------------------------|
-| REQUIRES_FIXED_VERSION | 0 | Upstream node will not accept any changes to the version field. Note that if |
-| | | REQUIRES_VERSION_ROLLING was set in the SetupConnection::flags field, this bit |
-| | | MUST NOT be set. Further, if this bit is set, extended jobs MUST NOT indicate |
-| | | support for version rolling. |
-| REQUIRES_EXTENDED_CHANNELS | 1 | Upstream node will not accept opening of a standard channel |
+| Field Name                 | Bit | Description                                                                    |
+|----------------------------|-----|--------------------------------------------------------------------------------|
+| REQUIRES_FIXED_VERSION     | 0   | Upstream node will not accept any changes to the version field. Note that if   |
+|                            |     | REQUIRES_VERSION_ROLLING was set in the SetupConnection::flags field, this bit |
+|                            |     | MUST NOT be set. Further, if this bit is set, extended jobs MUST NOT indicate  |
+|                            |     | support for version rolling.                                                   |
+| REQUIRES_EXTENDED_CHANNELS | 1   | Upstream node will not accept opening of a standard channel                    |
 
 ### 5.3.2 `OpenStandardMiningChannel` (Client -> Server)
 
